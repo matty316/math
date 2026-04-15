@@ -106,6 +106,10 @@ public enum Math {
                                [0, 0, 0,        1]])
     }
     
+    public static func scale(scale: Float) -> float4x4 {
+        return Self.scale(vector: [scale, scale, scale])
+    }
+    
     public static func identity() -> float4x4 {
         matrix_identity_float4x4
     }
@@ -162,5 +166,9 @@ public extension float4x4 {
     
     func scale(vector: vec3) -> float4x4 {
         self * Math.scale(vector: vector)
+    }
+    
+    func scale(scale: Float) -> float4x4 {
+        self * Math.scale(scale: scale)
     }
 }
