@@ -112,7 +112,7 @@ public enum Math {
 }
 
 public extension float4x4 {
-    public var upperLeft: float3x3 {
+    var upperLeft: float3x3 {
         let x = columns.0.xyz
         let y = columns.1.xyz
         let z = columns.2.xyz
@@ -121,7 +121,7 @@ public extension float4x4 {
 }
 
 public extension SIMD4<Float> {
-    public var xyz: SIMD3<Float> {
+    var xyz: SIMD3<Float> {
         get {
             SIMD3<Float>(x, y, z)
         }
@@ -133,28 +133,34 @@ public extension SIMD4<Float> {
     }
     
     // convert from double4
-    public init(_ d: SIMD4<Double>) {
+    init(_ d: SIMD4<Double>) {
         self.init()
         self = [Float(d.x), Float(d.y), Float(d.z), Float(d.w)]
     }
 }
 
 public extension Float {
-    public var radians: Float {
+    var radians: Float {
         Math.radians(from: self)
     }
 }
 
+public extension Double {
+    var radians: Float {
+        Math.radians(from: Float(self))
+    }
+}
+
 public extension float4x4 {
-    public func translate(vector: vec3) -> float4x4 {
+    func translate(vector: vec3) -> float4x4 {
         self * Math.translation(vector: vector)
     }
     
-    public func rotate(vector: vec3) -> float4x4 {
+    func rotate(vector: vec3) -> float4x4 {
         self * Math.rotate(rotation: vector)
     }
     
-    public func scale(vector: vec3) -> float4x4 {
+    func scale(vector: vec3) -> float4x4 {
         self * Math.scale(vector: vector)
     }
 }
